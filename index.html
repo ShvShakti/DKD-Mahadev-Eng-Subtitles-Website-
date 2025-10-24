@@ -12,8 +12,8 @@
 
 <style>
 :root{
-  --accent:#6b46c1; /* purple */
-  --accent-2:#2b6cb0; /* blue */
+  --accent:#6b46c1;
+  --accent-2:#2b6cb0;
   --bg:#071029;
   --card:#071827;
   --glass: rgba(255,255,255,0.04);
@@ -28,7 +28,7 @@ html,body{
 }
 .wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
-/* ===== Header ===== */
+/* Header */
 header{
   display:flex;
   align-items:center;
@@ -36,8 +36,6 @@ header{
   position:relative;
   z-index:10;
 }
-
-/* Translation button (left) */
 #langToggle{
   padding:8px 14px;
   border-radius:10px;
@@ -50,8 +48,6 @@ header{
   transition: all .25s ease;
 }
 #langToggle:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px)}
-
-/* Logo center */
 .logo{
   position:absolute;
   left:50%;
@@ -62,8 +58,6 @@ header{
   width:auto;
   filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));
 }
-
-/* Menu icon (right) */
 .menu-icon{
   font-size:28px;
   cursor:pointer;
@@ -72,8 +66,6 @@ header{
   transition:transform .2s;
 }
 .menu-icon:hover{transform:scale(1.1)}
-
-/* Dropdown menu */
 .nav-menu{
   display:none;
   flex-direction:column;
@@ -98,7 +90,7 @@ header{
 }
 .nav-menu a:hover{color:#bcd7ff;}
 
-/* ===== Hero Section ===== */
+/* Hero Section */
 .hero{
   min-height:70vh;
   display:flex;
@@ -121,8 +113,17 @@ header{
   animation:fadeUp .9s forwards .15s;
 }
 
-h1{font-size:40px;margin:6px 0 8px;color:var(--accent)}
-.sub{font-size:18px;margin:6px 0 18px;color:#cfe6ff}
+.card h1{
+  font-size:40px;
+  margin:6px 0 16px; /* gap between title & subtitle */
+  color:var(--accent);
+}
+.card .sub{
+  font-size:18px;
+  margin:0 0 22px; /* subtitle bottom gap */
+  color:#cfe6ff;
+  line-height:1.6;
+}
 .purpose{font-size:15px;line-height:1.6;color:#d6e9ff;margin:12px 0 18px}
 .mantra{font-size:22px;margin-top:18px;font-weight:700}
 
@@ -153,7 +154,7 @@ footer{
 
 /* Responsive */
 @media (max-width:720px){
-  h1{font-size:30px}
+  .card h1{font-size:30px}
   .card{padding:22px}
   .logo img{height:48px;}
 }
@@ -182,18 +183,11 @@ footer{
 
 <div class="wrap" role="main">
   <header>
-    <!-- Left: Translate button -->
     <button id="langToggle">EN / हिन्दी</button>
-
-    <!-- Center: Logo -->
     <div class="logo">
       <img src="your-logo.png" alt="Devo Ke Dev Mahadev Logo">
     </div>
-
-    <!-- Right: Menu icon -->
     <div class="menu-icon" id="menuBtn">☰</div>
-
-    <!-- Hidden nav -->
     <nav class="nav-menu" id="navMenu">
       <a href="index.html">Home</a>
       <a href="episodes.html">Episodes</a>
@@ -209,7 +203,7 @@ footer{
       <div class="sub">“Experience the divine journey of Lord Shiva — now with English subtitles.”</div>
 
       <div class="purpose">
-        <strong>Explain the project purpose:</strong><br>
+        <strong>Project purpose:</strong><br>
         This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.
       </div>
 
@@ -229,12 +223,9 @@ footer{
 </div>
 
 <script>
-  // Navigation toggle
   const menuBtn = document.getElementById('menuBtn');
   const navMenu = document.getElementById('navMenu');
   menuBtn.addEventListener('click', ()=> navMenu.classList.toggle('active'));
-
-  // Translation button (manual placeholder)
   document.getElementById('langToggle').addEventListener('click', ()=>{
     alert('Translation toggle feature coming soon!');
   });
