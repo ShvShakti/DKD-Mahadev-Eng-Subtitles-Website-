@@ -1,168 +1,51 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Devo Ke Dev Mahadev - Eng Translated Program</title>
-  <meta name="description" content="Experience the divine journey of Lord Shiva — now with English subtitles." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --accent:#6b46c1;
-      --accent-2:#2b6cb0;
-      --bg:#071029;
-      --card:#071827;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Roboto,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%), linear-gradient(180deg,var(--bg), #00121a 80%); color:#e6eef8}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px;position:relative;z-index:2}header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-weight:700;letter-spacing:0.6px;font-size:18px}
-.nav{display:flex;gap:10px}
-.nav .btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:10px;color:inherit;text-decoration:none;font-weight:600;backdrop-filter: blur(6px);transition:all .22s ease}
-.nav .btn:hover{transform:translateY(-4px)}
-
-.hero{min-height:66vh;display:flex;align-items:center;justify-content:center;padding:48px 12px}
-.card{width:100%;max-width:880px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:34px;border:1px solid rgba(255,255,255,0.04);box-shadow: 0 12px 40px rgba(2,6,23,0.6);backdrop-filter: blur(8px);text-align:center;opacity:0;transform:translateY(12px);animation:fadeUp .9s forwards .15s}
-
-h1{font-size:40px;margin:6px 0 8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{font-size:18px;margin:6px 0 18px;color:#cfe6ff}
-.purpose{font-size:15px;line-height:1.6;color:#d6e9ff;margin:12px 0 18px}
-.mantra{font-size:22px;margin-top:18px;font-weight:700}
-
-.cta-row{display:flex;gap:14px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.big-cta{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;text-decoration:none;box-shadow:0 10px 30px rgba(43,108,176,0.18);transition: transform .18s ease}
-.big-cta:active{transform:translateY(2px)}
-
-.watch-line{margin-top:12px;font-style:italic;color:#bcd7ff}
-
-/* translate toggle */
-.lang-toggle{position:fixed;right:18px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:12px;display:flex;flex-direction:column;gap:8px;align-items:center;backdrop-filter: blur(8px);z-index:30}
-.lang-btn{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,0.06);background:transparent}
-.lang-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff}
-.lang-label{font-size:11px;color:#bcd7ff}
-
-footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px}
-
-@media (max-width:720px){
-  h1{font-size:30px}
-  .brand{font-size:16px}
-  .card{padding:20px}
-  .nav{gap:6px}
-  .nav .btn{padding:8px 10px;font-size:14px}
-  .lang-toggle{right:10px}
-}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-.bg-deco{position:fixed;right:-120px;top:-80px;width:420px;height:420px;background:conic-gradient(from 200deg at 50% 50%, rgba(107,70,193,0.08), rgba(43,108,176,0.06));filter:blur(60px);pointer-events:none;z-index:0}
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devo Ke Dev Mahadev</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="bg-deco" aria-hidden="true"></div>
-  <div class="wrap" role="main">
+
+    <!-- Header -->
     <header>
-      <div class="brand">Devo Ke Dev Mahadev</div><!-- top-right: three nav items -->
-  <nav class="nav" aria-label="Main navigation">
-    <a class="btn" href="index.html" data-i18n="nav.home">Home</a>
-    <a class="btn" href="contact.html" data-i18n="nav.contact">Contact</a>
-    <a class="btn" href="#legal" data-i18n="nav.legal">Legal</a>
-  </nav>
-</header>
+        <div class="logo">
+            <h1>Devo Ke Dev Mahadev</h1>
+        </div>
+        <nav>
+            <button onclick="location.href='episodes.html'">Episodes</button>
+            <img src="google-translate-logo.png" alt="Translate" class="translate-logo">
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
 
-<section class="hero" aria-labelledby="main-title">
-  <div class="card">
-    <h1 id="main-title" data-i18n="hero.title">Devo Ke Dev Mahadev</h1>
-    <div class="sub" data-i18n="hero.sub">“Experience the divine journey of Lord Shiva — now with English subtitles.”</div>
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <h2>Experience the divine journey of Lord Shiva — now with English subtitles.</h2>
+            <p class="subheading">
+                This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.
+            </p>
+            <h3 class="shiva">“ॐ नमः शिवाय”</h3>
+            <button class="watch-button" onclick="location.href='episodes.html'">
+                Watch Devo Ke Dev Mahadev in HD
+            </button>
+            <p class="watch-description">
+                Understand every divine moment, and feel the devotion beyond language.
+            </p>
+        </section>
+    </main>
 
-    <div class="purpose" data-i18n="hero.purpose"><strong>Explain the project purpose:</strong><br>
-      This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.</div>
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series</p>
+    </footer>
 
-    <div class="mantra" data-i18n="hero.mantra">“ॐ नमः शिवाय”</div>
-
-    <!-- Center buttons (Episodes & About) -->
-    <div class="cta-row">
-      <a class="big-cta" href="episodes.html" data-i18n="cta.episodes">Episodes</a>
-      <a class="big-cta" href="about.html" data-i18n="cta.about">About</a>
-    </div>
-
-    <div class="watch-line" data-i18n="hero.watch">Watch Devo Ke Dev Mahadev in HD, understand every divine moment, and feel the devotion beyond language.</div>
-
-    <div id="legal" style="margin-top:18px;color:#9fb8dd;font-size:13px;" data-i18n="hero.disclaimer">Disclaimer / Legal: <em>placeholder — will add later</em></div>
-  </div>
-</section>
-
-<footer>
-  <span data-i18n="footer.copy">Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series</span>
-</footer>
-
-  </div>  <!-- language toggle (floating) -->  <div class="lang-toggle" role="region" aria-label="Language toggle">
-    <div class="lang-btn" id="btn-en" title="English">EN</div>
-    <div class="lang-btn" id="btn-hi" title="हिन्दी">HI</div>
-    <div class="lang-label" id="lang-current">EN</div>
-  </div>  <script>
-    // Simple i18n using data-i18n attributes. No external libs.
-    const strings = {
-      en: {
-        'nav.home':'Home',
-        'nav.contact':'Contact',
-        'nav.legal':'Legal',
-        'hero.title':'Devo Ke Dev Mahadev',
-        'hero.sub':'“Experience the divine journey of Lord Shiva — now with English subtitles.”',
-        'hero.purpose':'<strong>Explain the project purpose:</strong><br>This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.',
-        'hero.mantra':'“ॐ नमः शिवाय”',
-        'cta.episodes':'Episodes',
-        'cta.about':'About',
-        'hero.watch':'Watch Devo Ke Dev Mahadev in HD, understand every divine moment, and feel the devotion beyond language.',
-        'hero.disclaimer':'Disclaimer / Legal: <em>placeholder — will add later</em>',
-        'footer.copy':'Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series'
-      },
-      hi: {
-        'nav.home':'होम',
-        'nav.contact':'संपर्क',
-        'nav.legal':'कानूनी',
-        'hero.title':'देवो के देव महादेव',
-        'hero.sub':'"भगवान शिव की दिव्य यात्रा का अनुभव करें — अब अंग्रेज़ी उपशीर्षक के साथ।"',
-        'hero.purpose':'<strong>परियोजना का उद्देश्य समझाइए:</strong><br>यह वेबसाइट भगवान शिव की दिव्य कहानी को अंग्रेज़ी अनुवादित उपशीर्षकों के माध्यम से सभी के करीब लाने के लिए समर्पित है। हमारा लक्ष्य इस महान कृति को विश्व भर में समझने योग्य और सुलभ बनाना है, भक्ति, संतुलन, और शाश्वत सत्य का संदेश फैलाना है।',
-        'hero.mantra':'"ॐ नमः शिवाय"',
-        'cta.episodes':'एपिसोड',
-        'cta.about':'जानिए',
-        'hero.watch':'देवो के देव महादेव को HD में देखें, हर दिव्य क्षण को समझें, और भाषा के परे भक्ति का अनुभव करें।',
-        'hero.disclaimer':'अस्वीकरण / कानूनी: <em>बाद में जोड़ा जाएगा</em>',
-        'footer.copy':'कॉपीराइट © [2025] देवो के देव महादेव फैन मेड हिंदी से अंग्रेज़ी अनुवादित उपशीर्षक सीरीज़'
-      }
-    };
-
-    const elList = document.querySelectorAll('[data-i18n]');
-    function applyLang(lang){
-      elList.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if(strings[lang] && strings[lang][key]){
-          el.innerHTML = strings[lang][key];
-        }
-      });
-      // update toggle UI
-      document.getElementById('btn-en').classList.toggle('active', lang==='en');
-      document.getElementById('btn-hi').classList.toggle('active', lang==='hi');
-      document.getElementById('lang-current').textContent = (lang==='en')? 'EN' : 'HI';
-      localStorage.setItem('dkd_lang', lang);
-    }
-
-    // init from localStorage or browser language
-    const saved = localStorage.getItem('dkd_lang');
-    const browserLang = navigator.language && navigator.language.startsWith('hi') ? 'hi' : 'en';
-    applyLang(saved || browserLang);
-
-    document.getElementById('btn-en').addEventListener('click', () => applyLang('en'));
-    document.getElementById('btn-hi').addEventListener('click', () => applyLang('hi'));
-
-    // Optional: allow double-tap on the floating toggle area to switch quickly
-    document.querySelector('.lang-toggle').addEventListener('dblclick', () => {
-      const current = localStorage.getItem('dkd_lang') || (navigator.language && navigator.language.startsWith('hi') ? 'hi' : 'en');
-      applyLang(current === 'en' ? 'hi' : 'en');
-    });
-  </script></body>
+    <script src="scripts.js"></script>
+</body>
 </html>
