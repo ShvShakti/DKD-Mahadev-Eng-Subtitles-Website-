@@ -1,51 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devo Ke Dev Mahadev</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <h1>Devo Ke Dev Mahadev</h1>
-        </div>
-        <nav>
-            <button onclick="location.href='episodes.html'">Episodes</button>
-            <img src="google-translate-logo.png" alt="Translate" class="translate-logo">
-            <div class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </nav>
-    </header>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+    color: #222;
+}
 
-    <!-- Hero Section -->
-    <main>
-        <section class="hero">
-            <h2>Experience the divine journey of Lord Shiva — now with English subtitles.</h2>
-            <p class="subheading">
-                This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.
-            </p>
-            <h3 class="shiva">“ॐ नमः शिवाय”</h3>
-            <button class="watch-button" onclick="location.href='episodes.html'">
-                Watch Devo Ke Dev Mahadev in HD
-            </button>
-            <p class="watch-description">
-                Understand every divine moment, and feel the devotion beyond language.
-            </p>
-        </section>
-    </main>
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #222;
+    color: white;
+    position: sticky;
+    top: 0;
+}
 
-    <!-- Footer -->
-    <footer>
-        <p>Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series</p>
-    </footer>
+header .logo h1 {
+    font-size: 2rem;
+}
 
-    <script src="scripts.js"></script>
-</body>
-</html>
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #ff5722;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+nav button:hover {
+    background-color: #e64a19;
+}
+
+.translate-logo {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.hero .subheading {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+.hero .shiva {
+    font-size: 2rem;
+    color: #4caf50;
+    margin-bottom: 30px;
+}
+
+.watch-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.watch-button:hover {
+    background-color: #1976d2;
+}
+
+.watch-description {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav button {
+        display: none;
+    }
+
+    .translate-logo {
+        display: none;
+    }
+}
