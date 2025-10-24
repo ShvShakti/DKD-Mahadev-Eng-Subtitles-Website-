@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Devo Ke Dev Mahadev - Episodes</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+}
+.wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+header h1{
+    color: #6b46c1;
+}
+nav a{
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+nav a:hover{
+    color: #00ffff;
+}
+
+/* Video Cards */
+.video-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.card{
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+.card:hover{
+    transform: translateY(-5px);
+}
+.card iframe{
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    margin-top:40px;
+    padding: 15px;
+    font-size: 13px;
+    color: #9fb8dd;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <h1>Devo Ke Dev Mahadev</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="episodes.html">Episodes</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="video-grid">
+        <!-- Example Video Card -->
+        <div class="card">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=FACEBOOK_VIDEO_LINK_1" frameborder="0" allowfullscreen></iframe>
+            <h3>Episode 1 - Title Here</h3>
+        </div>
+
+        <div class="card">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=FACEBOOK_VIDEO_LINK_2" frameborder="0" allowfullscreen></iframe>
+            <h3>Episode 2 - Title Here</h3>
+        </div>
+
+        <div class="card">
+            <iframe src="https://www.facebook.com/plugins/video.php?href=FACEBOOK_VIDEO_LINK_3" frameborder="0" allowfullscreen></iframe>
+            <h3>Episode 3 - Title Here</h3>
+        </div>
+
+        <!-- Add more cards as needed -->
+    </section>
+
+    <footer>
+        Copyright © [2025] Devo Ke Dev Mahadev fan-made English subtitles series
+    </footer>
+</div>
+</body>
+</html>
