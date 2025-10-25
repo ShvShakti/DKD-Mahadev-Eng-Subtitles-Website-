@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Devo Ke Dev Mahadev - Eng Translated Program</title>
-<meta name="description" content="Experience the divine journey of Lord Shiva — now with English subtitles." />
+<title>Devo Ke Dev Mahadev - Episodes</title>
+<meta name="description" content="Watch Devo Ke Dev Mahadev episodes with English subtitles." />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --accent:#6b46c1;
@@ -15,332 +17,225 @@
   --bg:#071029;
   --card:#071827;
   --glass: rgba(255,255,255,0.04);
-  --text:#e6eef8;
 }
-
-/* Reset & Global */
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;}
 html,body{
   height:100%;
   font-family:Roboto,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  background:var(--bg);
-  color:var(--text);
+  background:radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%),
+             linear-gradient(180deg,var(--bg), #00121a 80%);
+  color:#e6eef8;
   overflow-x:hidden;
   position:relative;
 }
+.wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
-/* Animated Background */
-.bg-deco{
-  position:fixed;
-  top:-120px;
-  right:-120px;
-  width:500px;
-  height:500px;
-  background:conic-gradient(from 200deg at 50% 50%, rgba(107,70,193,0.08), rgba(43,108,176,0.06));
-  filter:blur(70px);
-  pointer-events:none;
-  z-index:0;
-  animation:rotateBg 120s linear infinite;
-}
-@keyframes rotateBg{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
-}
-
-/* Floating particles */
-.particle{
+/* Sparkle particles */
+.sparkle{
   position:absolute;
-  width:6px;
-  height:6px;
-  background:rgba(107,70,193,0.5);
+  width:6px;height:6px;
+  background:rgba(255,255,255,0.6);
   border-radius:50%;
   pointer-events:none;
-  animation:floatParticle linear infinite;
+  animation:twinkle 3s infinite;
 }
-@keyframes floatParticle{
-  0%{transform:translateY(0) translateX(0); opacity:0;}
-  10%{opacity:1;}
-  50%{transform:translateY(-150px) translateX(20px); opacity:0.6;}
-  100%{transform:translateY(-300px) translateX(0); opacity:0;}
+@keyframes twinkle{
+  0%,100%{opacity:0;transform:translateY(0) scale(0.5);}
+  50%{opacity:1;transform:translateY(-10px) scale(1);}
 }
-
-/* Wrapper */
-.wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
 /* Header */
 header{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
   position:relative;
   z-index:10;
-  padding:12px 24px;
+  padding:20px 0;
 }
-.logo{
-  position:relative;
+#langToggle{
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:var(--glass);
+  color:#e6eef8;
   cursor:pointer;
-}
-.logo img{
-  height:60px;
-  width:auto;
-  filter:drop-shadow(0 0 12px var(--accent));
-}
-
-/* Nav Menu */
-.nav-menu{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  background:rgba(5,10,22,0.96);
-  position:absolute;
-  top:100%;
-  left:50%;
-  transform:translate(-50%, -20px) scale(0);
-  width:220px;
-  padding:15px 0;
-  backdrop-filter:blur(10px);
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.05);
-  text-align:center;
-  z-index:20;
-  opacity:0;
-  pointer-events:none;
-  transition:all 0.3s ease;
-}
-.nav-menu.active{
-  transform:translate(-50%, 0) scale(1);
-  opacity:1;
-  pointer-events:auto;
-}
-.nav-menu a, #langToggle{
-  color:var(--text);
-  text-decoration:none;
   font-weight:600;
-  margin:8px 0;
-  transition:color .2s, text-shadow .2s;
+  backdrop-filter: blur(6px);
+  transition: all .25s ease;
 }
-.nav-menu a:hover, #langToggle:hover{
-  color:#bcd7ff;
-  text-shadow:0 0 8px var(--accent);
+#langToggle:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
+.logo{position:absolute;left:50%;transform:translateX(-50%);}
+.logo img{height:330px;width:auto;filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));}
+.menu-icon{font-size:28px;cursor:pointer;user-select:none;color:#e6eef8;transition:transform .2s;}
+.menu-icon:hover{transform:scale(1.1);}
+.nav-menu{
+  display:none;flex-direction:column;align-items:center;
+  background:rgba(5,10,22,0.96);position:absolute;top:100%;right:0;width:100%;padding:20px 0;
+  backdrop-filter:blur(10px);animation:fadeIn .3s ease;border-top:1px solid rgba(255,255,255,0.05);
 }
+.nav-menu.active{display:flex;}
+.nav-menu a{color:#e6eef8;text-decoration:none;font-weight:600;margin:10px 0;transition:color .2s;}
+.nav-menu a:hover{color:#bcd7ff}
 
 /* Hero Section */
 .hero{
-  min-height:75vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:50px 12px;
-  position:relative;
+  min-height:40vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:50px 12px;position:relative;
 }
-.card{
-  width:100%;
-  max-width:880px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:16px;
-  padding:34px;
-  border:1px solid rgba(255,255,255,0.04);
-  box-shadow:0 12px 40px rgba(2,6,23,0.6), 0 0 40px rgba(107,70,193,0.2);
-  backdrop-filter: blur(8px);
-  text-align:center;
-  opacity:0;
-  transform:translateY(12px);
-  animation:fadeUp .9s forwards .15s;
-}
-.card h1{
-  font-size:42px;
-  margin:6px 0 16px;
-  color:var(--accent);
-  text-shadow:0 0 12px var(--accent), 0 0 24px var(--accent-2);
-  animation:glowText 2.5s infinite alternate;
-}
-.card .sub{
-  font-size:18px;
-  margin:0 0 22px;
-  color:#cfe6ff;
-  line-height:1.6;
-  text-shadow:0 0 6px #bcd7ff;
-  animation:fadeUp 1.5s ease forwards;
-}
-.purpose{font-size:15px;line-height:1.6;color:#d6e9ff;margin:12px 0 18px}
-.mantra{
-  font-size:22px;
-  margin-top:18px;
-  font-weight:700;
-  color:#a3f0ff;
-  text-shadow:0 0 10px #2b6cb0, 0 0 20px #6b46c1;
-  animation:glowText 2s infinite alternate;
-}
+.hero h1{font-size:36px;color:var(--accent);margin-bottom:12px;text-shadow:0 0 12px var(--accent);}
+.hero p{font-size:18px;color:#cfe6ff;}
 
-.big-cta{
-  display:inline-block;
-  margin-top:18px;
-  padding:14px 24px;
-  border-radius:12px;
-  font-weight:700;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  color:white;
-  text-decoration:none;
-  box-shadow:0 8px 28px rgba(43,108,176,0.4);
-  transition:all .25s ease;
+/* Search */
+.search-wrapper{margin:20px 0;text-align:center;}
+#searchInput{
+  padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);
+  width:90%;max-width:400px;background:var(--glass);color:#e6eef8;
+  backdrop-filter:blur(6px);transition:all .25s;
+}
+#searchInput::placeholder{color:#bcd7ff;}
+
+/* Episodes Grid */
+.episodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:16px;position:relative;z-index:2;}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 12px 30px rgba(2,6,23,0.6);backdrop-filter: blur(8px);
+  transition:transform .3s, box-shadow .3s, filter .3s;
   position:relative;
   overflow:hidden;
+  animation:fadeUp 0.6s ease forwards;
 }
-.big-cta:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 20px var(--accent-2);
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(107,70,193,0.4);
+  filter:brightness(1.05);
 }
-.big-cta::before{
-  content:'';
-  position:absolute;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,#fff5,transparent 70%);
-  top:-50%;
-  left:-50%;
-  opacity:0.2;
-  transition:all .5s;
-  transform:rotate(45deg);
+.card h2{font-size:20px;color:var(--accent);margin-bottom:8px;text-shadow:0 0 10px var(--accent);}
+.card p{font-size:14px;line-height:1.5;color:#d6e9ff;margin-bottom:12px;}
+.card iframe{width:100%;height:180px;border-radius:12px;border:none;margin-bottom:8px;}
+.card .watch-btn{
+  display:inline-block;padding:10px 16px;border-radius:10px;
+  background:linear-gradient(270deg,var(--accent),var(--accent-2),var(--accent));
+  background-size:400% 400%;
+  color:#fff;font-weight:600;text-decoration:none;transition:transform .2s, background-position 2s;
+  animation:btnGradient 4s ease infinite;
 }
-.big-cta:hover::before{
-  top:-40%;
-  left:-40%;
-  opacity:0.4;
-}
-
-.watch-line{
-  margin-top:12px;
-  font-style:italic;
-  color:#bcd7ff;
-  text-shadow:0 0 6px #2b6cb0;
-}
+.card .watch-btn:active{transform:translateY(2px);}
+.card .preview{text-align:center;font-size:12px;color:#bcd7ff;margin-top:4px;}
 
 /* Footer */
-footer{
-  margin-top:60px;
-  padding:20px 12px;
-  text-align:center;
-  color:#9fb8dd;
-  font-size:13px;
-  background: rgba(7,16,41,0.8);
-  border-radius:12px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.5);
-  animation:fadeIn 2s ease;
+footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px;}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes btnGradient{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* Responsive */
 @media (max-width:720px){
-  .card h1{font-size:32px}
-  .card{padding:22px}
-  .logo img{height:330px;}
-}
-
-/* Animations */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glowText{
-  0%{text-shadow:0 0 8px var(--accent),0 0 16px var(--accent-2)}
-  50%{text-shadow:0 0 16px var(--accent),0 0 32px var(--accent-2)}
-  100%{text-shadow:0 0 8px var(--accent),0 0 16px var(--accent-2)}
+  .hero h1{font-size:28px;}
+  .card iframe{height:150px;}
 }
 </style>
 </head>
 <body>
-<div class="bg-deco" aria-hidden="true"></div>
 <div class="wrap" role="main">
+
+  <!-- Sparkles -->
+  <div id="sparkleContainer"></div>
+
   <header>
-    <div class="logo" id="logoBtn">
-      <img src="Mahadev Bhasma.png" alt="Devo Ke Dev Mahadev Logo">
-    </div>
+    <button id="langToggle">EN / हिन्दी</button>
+    <div class="logo"><img src="Mahadev Bhasma.png" alt="Devo Ke Dev Mahadev Logo"></div>
+    <div class="menu-icon" id="menuBtn">☰</div>
     <nav class="nav-menu" id="navMenu">
-      <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="episodes.html" data-i18n="nav.episodes">Episodes</a>
-      <a href="about.html" data-i18n="nav.about">About</a>
-      <a href="contact.html" data-i18n="nav.contact">Contact</a>
-      <a href="#legal" data-i18n="hero.disclaimer">Legal</a>
-      <a=<button id="langToggle">EN / हिन्दी</button> 
+      <a href="index.html">Home</a>
+      <a href="episodes.html">Episodes</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#legal">Legal</a>
     </nav>
   </header>
 
-  <section class="hero" aria-labelledby="main-title">
-    <div class="card">
-      <h1 id="main-title" data-i18n="hero.title">Devo Ke Dev Mahadev</h1>
-      <div class="sub" data-i18n="hero.sub">Experience the divine journey of Lord Shiva — now with English subtitles.</div>
-      <div class="mantra" data-i18n="hero.mantra">“ॐ नमः शिवाय”</div>
-      <a class="big-cta" href="episodes.html" role="button" data-i18n="cta.episodes">Episodes</a>
-      <div class="watch-line" data-i18n="hero.watch">Watch Devo Ke Dev Mahadev in HD, understand every divine moment, and feel the devotion beyond language.</div>
-      <div class="purpose" data-i18n="hero.purpose"></div>
-      <div id="legal" style="margin-top:18px;color:#9fb8dd;font-size:13px;" data-i18n="hero.disclaimer">Disclaimer / Legal: <em>placeholder — will add later</em></div>
-    </div>
+  <section class="hero">
+    <h1>Devo Ke Dev Mahadev Episodes</h1>
+    <p>Watch the divine journey with English subtitles.</p>
   </section>
+
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Search episodes...">
+  </div>
+
+  <section class="episodes" id="episodesGrid">
+    <!-- Cards auto-generated here -->
+  </section>
+
+  <footer>
+    Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series
+  </footer>
 </div>
 
-<footer data-i18n="footer.copy">
-  Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series
-</footer>
-
 <script>
-// logo menu toggle
-const logoBtn = document.getElementById('logoBtn');
+// Hamburger menu
+const menuBtn = document.getElementById('menuBtn');
 const navMenu = document.getElementById('navMenu');
-logoBtn.addEventListener('click', ()=>{
-  navMenu.classList.toggle('active');
-});
+menuBtn.addEventListener('click', ()=> navMenu.classList.toggle('active'));
 
-// language toggle
-const strings = {
-en: {
-'nav.episodes':'Episodes','nav.about':'About','nav.contact':'Contact','nav.home':'Home',
-'hero.title':'Devo Ke Dev Mahadev','hero.sub':'Experience the divine journey of Lord Shiva — now with English subtitles.',
-'hero.purpose':'<strong>Project purpose / intention :</strong><br>This website is dedicated to bringing the divine story of Lord Shiva closer to everyone through English-translated subtitles. Our goal is to make this masterpiece understandable and accessible worldwide, spreading the message of devotion, balance, and eternal truth.',
-'hero.mantra':'“ॐ नमः शिवाय”','cta.episodes':'Episodes',
-'hero.watch':'Watch Devo Ke Dev Mahadev in HD, understand every divine moment, and feel the devotion beyond language.',
-'hero.disclaimer':'Disclaimer / Legal: <em>placeholder — will add later</em>',
-'footer.copy':'Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series'
-},
-hi: {
-'nav.episodes':'एपिसोड','nav.about':'जानिए','nav.contact':'संपर्क','nav.home':'मुख्य पृष्ठ',
-'hero.title':'देवो के देव महादेव','hero.sub':'"भगवान शिव की दिव्य यात्रा का अनुभव करें — अब अंग्रेज़ी उपशीर्षक के साथ।"',
-'hero.purpose':'<strong>परियोजना का उद्देश्य समझाइए:</strong><br>यह वेबसाइट भगवान शिव की दिव्य कहानी को अंग्रेज़ी अनुवादित उपशीर्षकों के माध्यम से सभी के करीब लाने के लिए समर्पित है। हमारा लक्ष्य इस महान कृति को विश्व भर में समझने योग्य और सुलभ बनाना है, भक्ति, संतुलन, और शाश्वत सत्य का संदेश फैलाना है।',
-'hero.mantra':'"ॐ नमः शिवाय"','cta.episodes':'एपिसोड',
-'hero.watch':'देवो के देव महादेव को HD में देखें, हर दिव्य क्षण को समझें, और भाषा के परे भक्ति का अनुभव करें।',
-'hero.disclaimer':'अस्वीकरण / कानूनी: <em>बाद में जोड़ा जाएगा</em>',
-'footer.copy':'कॉपीराइट © [2025] देवो के देव महादेव फैन मेड हिंदी से अंग्रेज़ी अनुवादित उपशीर्षक सीरीज़'
-}
-};
-
-function applyLang(lang){
-document.querySelectorAll('[data-i18n]').forEach(el=>{
-const key=el.getAttribute('data-i18n');
-if(strings[lang] && strings[lang][key]) el.innerHTML=strings[lang][key];
-});
-localStorage.setItem('dkd_lang', lang);
+// Sparkle effect
+const sparkleContainer = document.getElementById('sparkleContainer');
+for(let i=0;i<40;i++){
+  const sp = document.createElement('div');
+  sp.className='sparkle';
+  sp.style.left=Math.random()*100+'%';
+  sp.style.top=Math.random()*50+'%';
+  sp.style.animationDuration=(2+Math.random()*2)+'s';
+  sp.style.width=sp.style.height=(2+Math.random()*4)+'px';
+  sparkleContainer.appendChild(sp);
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
-const savedLang = localStorage.getItem('dkd_lang');
-const defaultLang = savedLang ? savedLang : (navigator.language.startsWith('hi') ? 'hi' : 'en');
-applyLang(defaultLang);
+// Episodes data
+let episodesData=[
+  {title:"Episode 1: The Beginning",description:"Description for Episode 1 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},
+  {title:"Episode 2: Divine Journey",description:"Description for Episode 2 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},
+  {title:"Episode 3: The Trials",description:"Description for Episode 3 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},
+  {title:"Episode 4: Victory & Peace",description:"Description for Episode 4 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},
+  {title:"Episode 5: Eternal Devotion",description:"Description for Episode 5 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}
+];
 
-document.getElementById('langToggle').addEventListener('click', ()=>{
-const current = localStorage.getItem('dkd_lang') || defaultLang;
-const next = current==='en'?'hi':'en';
-applyLang(next);
-});
+const grid = document.getElementById('episodesGrid');
+const searchInput = document.getElementById('searchInput');
 
-// Floating particles
-const hero = document.querySelector('.hero');
-for(let i=0;i<20;i++){
-  const p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*100+'%';
-  p.style.top=Math.random()*100+'%';
-  p.style.width=3+Math.random()*4+'px';
-  p.style.height=3+Math.random()*4+'px';
-  p.style.animationDuration=5+Math.random()*5+'s';
-  hero.appendChild(p);
+function renderEpisodes(list){
+  grid.innerHTML='';
+  list.forEach(ep=>{
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML=`
+      <h2>${ep.title}</h2>
+      <p>${ep.description}</p>
+      <iframe src="${ep.videoUrl}" allowfullscreen></iframe>
+      <a class="watch-btn" href="${ep.videoUrl}" target="_blank">Watch Now</a>
+      <div class="preview">Preview available in player</div>
+    `;
+    grid.appendChild(card);
+  });
 }
+
+renderEpisodes(episodesData);
+
+// Search filter
+searchInput.addEventListener('input', ()=>{
+  const val = searchInput.value.toLowerCase();
+  const filtered = episodesData.filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
+  renderEpisodes(filtered);
 });
+
+// Language toggle placeholder
+document.getElementById('langToggle').addEventListener('click', ()=>{alert('Translation coming soon!');});
 </script>
 </body>
 </html>
