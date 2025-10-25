@@ -44,39 +44,62 @@ html,body{
   50%{opacity:1;transform:translateY(-10px) scale(1);}
 }
 
-/* Header */
+/* Header / Logo tap */
 header{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   position:relative;
   z-index:10;
-  padding:20px 0;
+  padding:10px 0;
 }
-#langToggle{
-  padding:8px 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:var(--glass);
-  color:#e6eef8;
+.logo{
+  position:relative;
+  z-index:10;
   cursor:pointer;
-  font-weight:600;
-  backdrop-filter: blur(6px);
-  transition: all .25s ease;
 }
-#langToggle:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
-.logo{position:absolute;left:50%;transform:translateX(-50%);}
-.logo img{height:60px;width:auto;filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));}
-.menu-icon{font-size:28px;cursor:pointer;user-select:none;color:#e6eef8;transition:transform .2s;}
-.menu-icon:hover{transform:scale(1.1);}
+.logo img{
+  height:330px;
+  width:auto;
+  filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));
+  transition:transform .3s ease;
+}
+.logo img:hover{transform:scale(1.05);}
+
 .nav-menu{
-  display:none;flex-direction:column;align-items:center;
-  background:rgba(5,10,22,0.96);position:absolute;top:100%;right:0;width:100%;padding:20px 0;
-  backdrop-filter:blur(10px);animation:fadeIn .3s ease;border-top:1px solid rgba(255,255,255,0.05);
+  position:absolute;
+  top:100%; /* Menu appears just below logo */
+  left:50%;
+  transform:translateX(-50%) scale(0.5);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:rgba(5,10,22,0.95);
+  padding:30px 50px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:all .5s ease;
+  z-index:100;
+  min-width:300px;
 }
-.nav-menu.active{display:flex;}
-.nav-menu a{color:#e6eef8;text-decoration:none;font-weight:600;margin:10px 0;transition:color .2s;}
-.nav-menu a:hover{color:#bcd7ff}
+.nav-menu.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateX(-50%) scale(1);
+}
+.nav-menu a{
+  color:#e6eef8;
+  text-decoration:none;
+  font-weight:700;
+  font-size:22px;
+  margin:10px 0;
+  transition:color .2s, transform .3s;
+}
+.nav-menu a:hover{
+  color:#bcd7ff;
+  transform:scale(1.05);
+}
 
 /* Hero Section */
 .hero{
@@ -127,7 +150,6 @@ header{
 footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px;}
 
 /* Animations */
-@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes btnGradient{
   0%{background-position:0% 50%;}
@@ -139,6 +161,7 @@ footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-siz
 @media (max-width:720px){
   .hero h1{font-size:28px;}
   .card iframe{height:150px;}
+  .nav-menu a{font-size:20px;}
 }
 </style>
 </head>
@@ -148,22 +171,21 @@ footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-siz
   <!-- Sparkles -->
   <div id="sparkleContainer"></div>
 
-  <header>
-    <button id="langToggle">EN / हिन्दी</button>
+  <header id="logoHeader">
     <div class="logo"><img src="Mahadev Bhasma.png" alt="Devo Ke Dev Mahadev Logo"></div>
-    <div class="menu-icon" id="menuBtn">☰</div>
     <nav class="nav-menu" id="navMenu">
-      <a href="index.html">Home</a>
-      <a href="episodes.html">Episodes</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="#legal">Legal</a>
+      <a href="index.html">होमपेज</a>
+      <a href="episodes.html">एपिसोड्स</a>
+      <a href="about.html">अबाउट</a>
+      <a href="contact.html">संपर्क</a>
+      <a href="#legal">लीगल</a>
+      <a href="#" id="langToggle">EN / हिन्दी</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Devo Ke Dev Mahadev Episodes</h1>
-    <p>Watch the divine journey with English subtitles.</p>
+    <h1 id="heroTitle">Devo Ke Dev Mahadev Episodes</h1>
+    <p id="heroDesc">Watch the divine journey with English subtitles.</p>
   </section>
 
   <div class="search-wrapper">
@@ -174,16 +196,18 @@ footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-siz
     <!-- Cards auto-generated here -->
   </section>
 
-  <footer>
+  <footer id="pageFooter">
     Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series
   </footer>
 </div>
 
 <script>
-// Hamburger menu
-const menuBtn = document.getElementById('menuBtn');
+// Logo tap to toggle nav menu
+const logoHeader = document.getElementById('logoHeader');
 const navMenu = document.getElementById('navMenu');
-menuBtn.addEventListener('click', ()=> navMenu.classList.toggle('active'));
+logoHeader.addEventListener('click', ()=>{
+  navMenu.classList.toggle('active');
+});
 
 // Sparkle effect
 const sparkleContainer = document.getElementById('sparkleContainer');
@@ -206,8 +230,21 @@ let episodesData=[
   {title:"Episode 5: Eternal Devotion",description:"Description for Episode 5 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}
 ];
 
+let episodesDataHindi=[
+  {title:"एपिसोड 1: शुरुआत",description:"एपिसोड 1 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},
+  {title:"एपिसोड 2: दिव्य यात्रा",description:"एपिसोड 2 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},
+  {title:"एपिसोड 3: परीक्षाएँ",description:"एपिसोड 3 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},
+  {title:"एपिसोड 4: विजय और शांति",description:"एपिसोड 4 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},
+  {title:"एपिसोड 5: शाश्वत भक्ति",description:"एपिसोड 5 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}
+];
+
 const grid = document.getElementById('episodesGrid');
 const searchInput = document.getElementById('searchInput');
+const heroTitle = document.getElementById('heroTitle');
+const heroDesc = document.getElementById('heroDesc');
+const pageFooter = document.getElementById('pageFooter');
+
+let isHindi=false;
 
 function renderEpisodes(list){
   grid.innerHTML='';
@@ -230,12 +267,26 @@ renderEpisodes(episodesData);
 // Search filter
 searchInput.addEventListener('input', ()=>{
   const val = searchInput.value.toLowerCase();
-  const filtered = episodesData.filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
+  const filtered = (isHindi ? episodesDataHindi : episodesData)
+    .filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
   renderEpisodes(filtered);
 });
 
-// Language toggle placeholder
-document.getElementById('langToggle').addEventListener('click', ()=>{alert('Translation coming soon!');});
+// Language toggle
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  isHindi = !isHindi;
+  if(isHindi){
+    heroTitle.textContent="देवो के देव महादेव एपिसोड्स";
+    heroDesc.textContent="दिव्य यात्रा हिंदी में देखें।";
+    renderEpisodes(episodesDataHindi);
+    pageFooter.textContent="कॉपीराइट © [2025] देवो के देव महादेव फैन-मेड हिंदी में अनुवादित सबटाइटल्स सीरीज़";
+  } else {
+    heroTitle.textContent="Devo Ke Dev Mahadev Episodes";
+    heroDesc.textContent="Watch the divine journey with English subtitles.";
+    renderEpisodes(episodesData);
+    pageFooter.textContent="Copyright © [2025] Devo Ke Dev Mahadev fan made Hindi to English translated subtitles series";
+  }
+});
 </script>
 </body>
 </html>
