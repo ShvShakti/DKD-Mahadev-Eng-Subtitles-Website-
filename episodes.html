@@ -1,354 +1,380 @@
 <!doctype html>
-<html lang="en">      
-<head>      
-<meta charset="utf-8" />      
-<meta name="viewport" content="width=device-width, initial-scale=1" />      
-<title>Devon ke Dev Mahadev - Episodes</title>      
-<meta name="description" content="Watch Devon ke Dev Mahadev episodes with English subtitles." />    
-<link rel="preconnect" href="https://fonts.googleapis.com">      
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>      
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">    
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Devon ke Dev Mahadev - Episodes</title>
+  <meta name="description" content="Watch Devon ke Dev Mahadev episodes with English subtitles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-<!-- optional: match browser theme on mobile -->
-<meta name="theme-color" content="#071029">
+  <style>
+    :root{
+      --accent:#6b46c1;
+      --accent-2:#2b6cb0;
+      --bg:#071029;
+      --card:#071827;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{
+      height:100%;
+      font-family:Roboto,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%),
+                 linear-gradient(180deg,var(--bg), #00121a 80%);
+      color:#e6eef8;
+      overflow-x:hidden;
+      position:relative;
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
-<style>      
-:root{      
-  --accent:#6b46c1;      
-  --accent-2:#2b6cb0;      
-  --bg:#071029;      
-  --card:#071827;      
-  --glass: rgba(255,255,255,0.04);      
-}      
+    /* Sparkle particles */
+    .sparkle{
+      position:absolute;
+      width:6px;height:6px;
+      background:rgba(255,255,255,0.6);
+      border-radius:50%;
+      pointer-events:none;
+      animation:twinkle 3s infinite;
+    }
+    @keyframes twinkle{
+      0%,100%{opacity:0;transform:translateY(0) scale(0.5);}
+      50%{opacity:1;transform:translateY(-10px) scale(1);}
+    }
 
-*{box-sizing:border-box;margin:0;padding:0;}      
+    /* Header / Logo tap */
+    header{
+      display:flex;
+      justify-content:center;
+      position:relative;
+      z-index:10;
+      padding:10px 0;
+    }
+    .logo{
+      position:relative;
+      z-index:10;
+      cursor:pointer;
+    }
+    .logo img{
+      height:330px;
+      width:auto;
+      filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));
+      transition:transform .3s ease;
+    }
+    .logo img:hover{transform:scale(1.05);}
 
-/* ---------- Page / overscroll fixes (NEW & safe) ---------- */
-html, body {
-  height: 100%;
-  min-height: 100vh;                    /* ensure body always covers viewport */
-  font-family: Roboto, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  /* keep your existing gradient background */
-  background: radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%),
-             linear-gradient(180deg, var(--bg), #00121a 80%);
-  color: #e6eef8;
-  overflow-x: hidden;
-  position: relative;
+    .nav-menu{
+      position:absolute;
+      top:100%; /* Menu appears just below logo */
+      left:50%;
+      transform:translateX(-50%) scale(0.5);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      background:rgba(5,10,22,0.95);
+      padding:30px 50px;
+      border-radius:20px;
+      backdrop-filter:blur(10px);
+      opacity:0;
+      pointer-events:none;
+      transition:all .5s ease;
+      z-index:100;
+      min-width:300px;
+    }
+    .nav-menu.active{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateX(-50%) scale(1);
+    }
+    .nav-menu a{
+      color:#e6eef8;
+      text-decoration:none;
+      font-weight:700;
+      font-size:22px;
+      margin:10px 0;
+      transition:color .2s, transform .3s;
+    }
+    .nav-menu a:hover{
+      color:#bcd7ff;
+      transform:scale(1.05);
+    }
 
-  /* --- NEW --- prevent overscroll bounce revealing white background */
-  background-color: var(--bg);          /* solid fallback matching gradient */
-  -webkit-overflow-scrolling: touch;    /* smoother mobile scrolling */
-  overscroll-behavior-y: contain;       /* prevent parent/background from showing on bounce */
-  touch-action: pan-y;                  /* reduce interference with gestures */
-}
+    /* Hero Section */
+    .hero{
+      min-height:40vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:50px 12px;
+      position:relative;
+    }
+    .hero h1{
+      font-size:36px;
+      color:var(--accent);
+      margin-bottom:12px;
+      text-shadow:0 0 12px var(--accent);
+    }
+    .hero p{
+      font-size:18px;
+      color:#cfe6ff;
+      margin-top:4px;
+    }
 
-/* ensure no accidental white gap if something scrolls past */
-body::after{
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(7,16,41,0) 0%, var(--bg) 30%); /* invisible helper - won't change visuals */
-  z-index: 0;
-}
+    /* Search */
+    .search-wrapper{margin:20px 0;text-align:center;}
+    #searchInput{
+      padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);
+      width:90%;max-width:400px;background:var(--glass);color:#e6eef8;
+      backdrop-filter:blur(6px);transition:all .25s;
+    }
+    #searchInput::placeholder{color:#bcd7ff;}
 
-/* ---------- Layout ---------- */
-.wrap{
-  max-width:1100px;
-  width:100%;                /* MAKE SURE wrap fills available width (prevents awkward horizontal space) */
-  margin:0 auto;
-  padding:24px;
-  position:relative;
-  z-index:1;
-}
+    /* Episodes Grid */
+    .episodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:16px;position:relative;z-index:2;}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 12px 30px rgba(2,6,23,0.6);backdrop-filter: blur(8px);
+      transition:transform .3s, box-shadow .3s, filter .3s;
+      position:relative;
+      overflow:hidden;
+      animation:fadeUp 0.6s ease forwards;
+    }
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 20px 50px rgba(107,70,193,0.4);
+      filter:brightness(1.05);
+    }
+    .card h2{font-size:20px;color:var(--accent);margin-bottom:8px;text-shadow:0 0 10px var(--accent);}
+    .card p{font-size:14px;line-height:1.5;color:#d6e9ff;margin-bottom:12px;}
+    .card iframe{width:100%;height:180px;border-radius:12px;border:none;margin-bottom:8px;}
+    .card .watch-btn{
+      display:inline-block;padding:10px 16px;border-radius:10px;
+      background:linear-gradient(270deg,var(--accent),var(--accent-2),var(--accent));
+      background-size:400% 400%;
+      color:#fff;font-weight:600;text-decoration:none;transition:transform .2s, background-position 2s;
+      animation:btnGradient 4s ease infinite;
+    }
+    .card .watch-btn:active{transform:translateY(2px);}
+    .card .preview{text-align:center;font-size:12px;color:#bcd7ff;margin-top:4px;}
 
-/* Sparkle particles */  
-.sparkle{  
-  position:absolute;  
-  width:6px;height:6px;  
-  background:rgba(255,255,255,0.6);  
-  border-radius:50%;  
-  pointer-events:none;  
-  animation:twinkle 3s infinite;  
-}  
-@keyframes twinkle{  
-  0%,100%{opacity:0;transform:translateY(0) scale(0.5);}  
-  50%{opacity:1;transform:translateY(-10px) scale(1);}  
-}  
-  
-/* Header / Logo tap */  
-header{  
-  display:flex;  
-  justify-content:center;  
-  position:relative;  
-  z-index:10;  
-  padding:10px 0;  
-}  
-.logo{  
-  position:relative;  
-  z-index:10;  
-  cursor:pointer;  
-}  
-.logo img{  
-  height:330px;  
-  width:auto;  
-  filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));  
-  transition:transform .3s ease;  
-}  
-.logo img:hover{transform:scale(1.05);}  
-  
-.nav-menu{  
-  position:absolute;  
-  top:100%; /* Menu appears just below logo */  
-  left:50%;  
-  transform:translateX(-50%) scale(0.5);  
-  display:flex;  
-  flex-direction:column;  
-  align-items:center;  
-  background:rgba(5,10,22,0.95);  
-  padding:30px 50px;  
-  border-radius:20px;  
-  backdrop-filter:blur(10px);  
-  opacity:0;  
-  pointer-events:none;  
-  transition:all .5s ease;  
-  z-index:100;  
-  min-width:300px;  
-}  
-.nav-menu.active{  
-  opacity:1;  
-  pointer-events:auto;  
-  transform:translateX(-50%) scale(1);  
-}  
-.nav-menu a{  
-  color:#e6eef8;  
-  text-decoration:none;  
-  font-weight:700;  
-  font-size:22px;  
-  margin:10px 0;  
-  transition:color .2s, transform .3s;  
-}  
-.nav-menu a:hover{  
-  color:#bcd7ff;  
-  transform:scale(1.05);  
-}  
-  
-/* Hero Section */  
-.hero{  
-  min-height:40vh;  
-  display:flex;  
-  flex-direction:column;  
-  align-items:center;  
-  justify-content:center;  
-  text-align:center;  
-  padding:50px 12px;  
-  position:relative;  
-}  
-.hero h1{  
-  font-size:36px;  
-  color:var(--accent);  
-  margin-bottom:12px;  
-  text-shadow:0 0 12px var(--accent);  
-}  
-.hero p{  
-  font-size:18px;  
-  color:#cfe6ff;  
-  margin-top:4px;  
-}  
-  
-/* Search */  
-.search-wrapper{margin:20px 0;text-align:center;}  
-#searchInput{  
-  padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);  
-  width:90%;max-width:400px;background:var(--glass);color:#e6eef8;  
-  backdrop-filter:blur(6px);transition:all .25s;  
-}  
-#searchInput::placeholder{color:#bcd7ff;}  
-  
-/* Episodes Grid */  
-.episodes{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-  margin-top:16px;
-  position:relative;
-  z-index:2;
-  width:100%;
-  align-items:start; /* ensure consistent card top alignment */
-}
-.card{  
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));  
-  border-radius:16px;
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.04);  
-  box-shadow:0 12px 30px rgba(2,6,23,0.6);
-  backdrop-filter: blur(8px);  
-  transition:transform .3s, box-shadow .3s, filter .3s;  
-  position:relative;  
-  overflow:hidden;  
-  animation:fadeUp 0.6s ease forwards;
-  max-width:100%;        /* prevent cards from overflowing container width */
-  box-sizing:border-box; /* safety */
-}  
-.card:hover{  
-  transform:translateY(-8px);  
-  box-shadow:0 20px 50px rgba(107,70,193,0.4);  
-  filter:brightness(1.05);  
-}  
-.card h2{font-size:20px;color:var(--accent);margin-bottom:8px;text-shadow:0 0 10px var(--accent);}  
-.card p{font-size:14px;line-height:1.5;color:#d6e9ff;margin-bottom:12px;}  
-.card iframe{width:100%;height:180px;border-radius:12px;border:none;margin-bottom:8px;display:block;}  
-.card .watch-btn{  
-  display:inline-block;padding:10px 16px;border-radius:10px;  
-  background:linear-gradient(270deg,var(--accent),var(--accent-2),var(--accent));  
-  background-size:400% 400%;  
-  color:#fff;font-weight:600;text-decoration:none;transition:transform .2s, background-position 2s;  
-  animation:btnGradient 4s ease infinite;  
-}  
-.card .watch-btn:active{transform:translateY(2px);}  
-.card .preview{text-align:center;font-size:12px;color:#bcd7ff;margin-top:4px;}  
-  
-/* Footer */  
-footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px;}  
-  
-/* Animations */  
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}  
-@keyframes btnGradient{  
-  0%{background-position:0% 50%;}  
-  50%{background-position:100% 50%;}  
-  100%{background-position:0% 50%;}  
-}  
-  
-/* Responsive */  
-@media (max-width:720px){  
-  .hero h1{font-size:28px;}  
-  .card iframe{height:150px;}  
-  .nav-menu a{font-size:20px;}  
-}
-</style>    
-</head>  
+    /* Footer */
+    footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px;}
 
-<body>      
-<div class="wrap" role="main">      
-  <!-- Sparkles -->      
-  <div id="sparkleContainer"></div>        
+    /* Animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes btnGradient{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
 
-  <header id="logoHeader">      
-    <div class="logo"><img src="Mahadev Bhasma.png" alt="Devon ke Dev Mahadev Logo"></div>      
-    <nav class="nav-menu" id="navMenu">      
-      <a href="index.html">Home</a>      
-      <a href="episodes.html">Episodes</a>      
-      <a href="about.html">About</a>      
-      <a href="contact.html">Contact</a>      
-      <a href="#legal">Legal</a>      
-      <a href="#" id="langToggle">EN / हिन्दी</a>      
-    </nav>      
-  </header>        
+    /* Responsive */
+    @media (max-width:720px){
+      .hero h1{font-size:28px;}
+      .card iframe{height:150px;}
+      .nav-menu a{font-size:20px;}
+    }
 
-  <section class="hero">      
-    <h1 id="heroTitle">Devon ke Dev Mahadev</h1>      
-    <p id="heroDesc">Watch the divine journey with English subtitles.</p>      
-  </section>        
+    /* ==========================
+       OVERSCROLL / WHITE-LINE FIX
+       Paste this inside <style> (already included here)
+       Only these rules added — no UI changes
+       ========================== */
 
-  <div class="search-wrapper">      
-    <input type="text" id="searchInput" placeholder="Search episodes...">      
-  </div>        
+    /* ensure html/body use the same dark background and cover full height */
+    html,
+    body {
+      background-color: var(--bg) !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      -webkit-backface-visibility: hidden;
+      -webkit-perspective: 1000;
+    }
 
-  <section class="episodes" id="episodesGrid"></section>        
+    /* prevent overscroll bounce showing white on modern browsers */
+    html,
+    body {
+      overscroll-behavior-y: none;
+      overscroll-behavior: none;
+      -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+      touch-action: pan-y;
+    }
 
-  <footer id="pageFooter">      
-    Copyright © [2025] Devon ke Dev Mahadev fan made Hindi to English translated subtitles series      
-  </footer>      
-</div>    
+    /* reapply the hero background and fix mobile repaint glitches */
+    body {
+      background: radial-gradient(
+                   circle at 10% 10%,
+                   rgba(107, 70, 193, 0.08),
+                   transparent 10%
+                 ),
+                 linear-gradient(180deg, var(--bg), #00121a 80%) !important;
+      background-attachment: fixed;
+      -webkit-transform: translate3d(0, 0, 0); /* force GPU compositing */
+    }
 
-<script>      
-// Logo tap to toggle nav menu      
-const logoHeader = document.getElementById('logoHeader');      
-const navMenu = document.getElementById('navMenu');      
-logoHeader.addEventListener('click', ()=>{      
-  navMenu.classList.toggle('active');      
-});      
-  
-// Sparkle effect  
-const sparkleContainer = document.getElementById('sparkleContainer');  
-for(let i=0;i<40;i++){  
-  const sp = document.createElement('div');  
-  sp.className='sparkle';  
-  sp.style.left=Math.random()*100+'%';  
-  sp.style.top=Math.random()*50+'%';  
-  sp.style.animationDuration=(2+Math.random()*2)+'s';  
-  sp.style.width=sp.style.height=(2+Math.random()*4)+'px';  
-  sparkleContainer.appendChild(sp);  
-}  
-  
-// Episodes data  
-let episodesData=[  
-  {title:"Episode 1: The Beginning",description:"Description for Episode 1 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},  
-  {title:"Episode 2: Divine Journey",description:"Description for Episode 2 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},  
-  {title:"Episode 3: The Trials",description:"Description for Episode 3 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},  
-  {title:"Episode 4: Victory & Peace",description:"Description for Episode 4 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},  
-  {title:"Episode 5: Eternal Devotion",description:"Description for Episode 5 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}  
-];  
-  
-let episodesDataHindi=[  
-  {title:"एपिसोड 1: शुरुआत",description:"एपिसोड 1 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},  
-  {title:"एपिसोड 2: दिव्य यात्रा",description:"एपिसोड 2 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},  
-  {title:"एपिसोड 3: परीक्षाएँ",description:"एपिसोड 3 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},  
-  {title:"एपिसोड 4: विजय और शांति",description:"एपिसोड 4 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},  
-  {title:"एपिसोड 5: शाश्वत भक्ति",description:"एपिसोड 5 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}  
-];  
-  
-const grid = document.getElementById('episodesGrid');  
-const searchInput = document.getElementById('searchInput');  
-const heroTitle = document.getElementById('heroTitle');  
-const heroDesc = document.getElementById('heroDesc');  
-const pageFooter = document.getElementById('pageFooter');  
-let isHindi=false;  
-  
-function renderEpisodes(list){  
-  grid.innerHTML='';  
-  list.forEach(ep=>{  
-    const card=document.createElement('div');  
-    card.className='card';  
-    card.innerHTML=`  
-      <h2>${ep.title}</h2>  
-      <p>${ep.description}</p>  
-      <iframe src="${ep.videoUrl}" allowfullscreen></iframe>  
-      <a class="watch-btn" href="${ep.videoUrl}" target="_blank">Watch Now</a>  
-      <div class="preview">Preview available in player</div>  
-    `;  
-    grid.appendChild(card);  
-  });  
-}  
-  
-renderEpisodes(episodesData);  
-  
-// Search filter  
-searchInput.addEventListener('input', ()=>{  
-  const val = searchInput.value.toLowerCase();  
-  const filtered = (isHindi ? episodesDataHindi : episodesData)  
-    .filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));  
-  renderEpisodes(filtered);  
-});  
-  
-// Language toggle  
-document.getElementById('langToggle').addEventListener('click', ()=>{  
-  isHindi = !isHindi;  
-  if(isHindi){  
-    heroTitle.textContent="देवो के देव महादेव";  
-    heroDesc.textContent="दिव्य यात्रा हिंदी में देखें।";  
-    renderEpisodes(episodesDataHindi);  
-    pageFooter.textContent="कॉपीराइट © [2025] देवो के देव महादेव फैन-मेड हिंदी में अनुवादित सबटाइटल्स सीरीज़";  
-  } else {  
-    heroTitle.textContent="Devon ke Dev Mahadev";  
-    heroDesc.textContent="Watch the divine journey with English subtitles.";  
-    renderEpisodes(episodesData);  
-    pageFooter.textContent="Copyright © [2025] Devon ke Dev Mahadev fan made Hindi to English translated subtitles series";  
-  }  
-});  
-</script>    
-</body>  
+    /* wrapper should not introduce white edges */
+    .wrap {
+      background: transparent !important;
+      min-height: 100vh;
+      display: block;
+    }
+
+    /* iframe players sometimes paint white while loading — force transparent */
+    .card iframe,
+    iframe {
+      background: transparent !important;
+      display: block;
+      overflow: hidden;
+    }
+
+    /* scrollbar track safety for some Android browsers */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 10px; }
+
+    /* general paint safety */
+    * {
+      background-clip: padding-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Optional fallback (commented). Uncomment only if absolutely needed for stubborn iOS bounce:
+    html, body {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+    */
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap" role="main">
+    <!-- Sparkles -->
+    <div id="sparkleContainer"></div>
+
+    <header id="logoHeader">
+      <div class="logo"><img src="Mahadev Bhasma.png" alt="Devon ke Dev Mahadev Logo"></div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html">Home</a>
+        <a href="episodes.html">Episodes</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="#legal">Legal</a>
+        <a href="#" id="langToggle">EN / हिन्दी</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1 id="heroTitle">Devon ke Dev Mahadev</h1>
+      <p id="heroDesc">Watch the divine journey with English subtitles.</p>
+    </section>
+
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="Search episodes...">
+    </div>
+
+    <section class="episodes" id="episodesGrid"></section>
+
+    <footer id="pageFooter">
+      Copyright © [2025] Devon ke Dev Mahadev fan made Hindi to English translated subtitles series
+    </footer>
+  </div>
+
+  <script>
+    // Logo tap to toggle nav menu
+    const logoHeader = document.getElementById('logoHeader');
+    const navMenu = document.getElementById('navMenu');
+    logoHeader.addEventListener('click', ()=>{
+      navMenu.classList.toggle('active');
+    });
+
+    // Sparkle effect
+    const sparkleContainer = document.getElementById('sparkleContainer');
+    for(let i=0;i<40;i++){
+      const sp = document.createElement('div');
+      sp.className='sparkle';
+      sp.style.left=Math.random()*100+'%';
+      sp.style.top=Math.random()*50+'%';
+      sp.style.animationDuration=(2+Math.random()*2)+'s';
+      sp.style.width=sp.style.height=(2+Math.random()*4)+'px';
+      sparkleContainer.appendChild(sp);
+    }
+
+    // Episodes data
+    let episodesData=[
+      {title:"Episode 1: The Beginning",description:"Description for Episode 1 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},
+      {title:"Episode 2: Divine Journey",description:"Description for Episode 2 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},
+      {title:"Episode 3: The Trials",description:"Description for Episode 3 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},
+      {title:"Episode 4: Victory & Peace",description:"Description for Episode 4 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},
+      {title:"Episode 5: Eternal Devotion",description:"Description for Episode 5 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}
+    ];
+
+    let episodesDataHindi=[
+      {title:"एपिसोड 1: शुरुआत",description:"एपिसोड 1 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},
+      {title:"एपिसोड 2: दिव्य यात्रा",description:"एपिसोड 2 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},
+      {title:"एपिसोड 3: परीक्षाएँ",description:"एपिसोड 3 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER3"},
+      {title:"एपिसोड 4: विजय और शांति",description:"एपिसोड 4 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER4"},
+      {title:"एपिसोड 5: शाश्वत भक्ति",description:"एपिसोड 5 का विवरण — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER5"}
+    ];
+
+    const grid = document.getElementById('episodesGrid');
+    const searchInput = document.getElementById('searchInput');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroDesc = document.getElementById('heroDesc');
+    const pageFooter = document.getElementById('pageFooter');
+    let isHindi=false;
+
+    function renderEpisodes(list){
+      grid.innerHTML='';
+      list.forEach(ep=>{
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML=`
+          <h2>${ep.title}</h2>
+          <p>${ep.description}</p>
+          <iframe src="${ep.videoUrl}" allowfullscreen></iframe>
+          <a class="watch-btn" href="${ep.videoUrl}" target="_blank">Watch Now</a>
+          <div class="preview">Preview available in player</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    renderEpisodes(episodesData);
+
+    // Search filter
+    searchInput.addEventListener('input', ()=>{
+      const val = searchInput.value.toLowerCase();
+      const filtered = (isHindi ? episodesDataHindi : episodesData)
+        .filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
+      renderEpisodes(filtered);
+    });
+
+    // Language toggle
+    document.getElementById('langToggle').addEventListener('click', ()=>{
+      isHindi = !isHindi;
+      if(isHindi){
+        heroTitle.textContent="देवो के देव महादेव";
+        heroDesc.textContent="दिव्य यात्रा हिंदी में देखें।";
+        renderEpisodes(episodesDataHindi);
+        pageFooter.textContent="कॉपीराइट © [2025] देवो के देव महादेव फैन-मेड हिंदी में अनुवादित सबटाइटल्स सीरीज़";
+      } else {
+        heroTitle.textContent="Devon ke Dev Mahadev";
+        heroDesc.textContent="Watch the divine journey with English subtitles.";
+        renderEpisodes(episodesData);
+        pageFooter.textContent="Copyright © [2025] Devon ke Dev Mahadev fan made Hindi to English translated subtitles series";
+      }
+    });
+  </script>
+</body>
 </html>
