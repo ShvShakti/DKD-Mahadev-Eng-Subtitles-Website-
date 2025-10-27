@@ -18,7 +18,27 @@
   --card:#071827;    
   --glass: rgba(255,255,255,0.04);    
 }    
-*{box-sizing:border-box;margin:0;padding:0;}    
+*{box-sizing:border-box;margin:0;padding:0;}   /* --- Scroll bounce / white-gap fix (paste this inside your <style> near end) --- */
+
+/* ensure the root/html uses the same background color so overscroll shows dark bg */
+html {
+  background-color: var(--bg);
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+}
+
+/* prevent page bounce showing white on mobile, keep background fixed */
+body {
+  min-height: 100%;
+  background-attachment: fixed;
+  -webkit-overflow-scrolling: touch; /* smooth native scrolling on iOS */
+  overscroll-behavior-y: contain;    /* prevent white flash on modern browsers */
+}
+
+/* subtle extra safety: ensure no accidental white backgrounds at edges */
+.wrap, .card, header, footer, .nav-menu {
+  background-clip: padding-box;
+} 
 html,body{    
   height:100%;    
   font-family:Roboto,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;    
@@ -27,24 +47,6 @@ html,body{
   color:#e6eef8;    
   overflow-x:hidden;    
   position:relative;    
-  /* --- existing html,body rule: replace or extend it with this --- */
-html, body {
-  height: 100%;
-  font-family: Roboto, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  /* keep your gradient background as-is */
-  background: radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%),
-             linear-gradient(180deg, var(--bg), #00121a 80%);
-  color: #e6eef8;
-  overflow-x: hidden;
-  position: relative;
-
-  /* NEW — prevent white overscroll/bounce showing default page background */
-  background-color: #071029;              /* fallback solid same as --bg */
-  -webkit-overflow-scrolling: touch;      /* smoother mobile scrolling */
-  overscroll-behavior-y: contain;         /* stop bounce from revealing background */
-  touch-action: pan-y;                    /* allow vertical scroll but reduce unexpected gestures */
-}
-<meta name="theme-color" content="#071029">
 }    
 .wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
