@@ -18,32 +18,39 @@
       --glass: rgba(255,255,255,0.04);
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-    html,body{
-      height:100%;
+    
+    /* GPU acceleration base */
+    html{ height:100%; overflow-x:hidden; }
+    body{
+      min-height:100vh;
       font-family:Roboto,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       background:radial-gradient(circle at 10% 10%, rgba(107,70,193,0.08), transparent 10%),
                  linear-gradient(180deg,var(--bg), #00121a 80%);
       color:#e6eef8;
-      overflow-x:hidden;
       position:relative;
+      transform:translateZ(0);
+      background-attachment:fixed;
     }
+    
     .wrap{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:1}
 
-    /* Sparkle particles */
+    /* Optimized Sparkles - Reduced to 12 */
     .sparkle{
-      position:absolute;
-      width:6px;height:6px;
-      background:rgba(255,255,255,0.6);
+      position:fixed; /* Changed to fixed */
+      width:4px;height:4px; /* Smaller */
+      background:rgba(255,255,255,0.5);
       border-radius:50%;
       pointer-events:none;
-      animation:twinkle 3s infinite;
+      will-change:transform,opacity;
+      animation:twinkle 4s infinite;
+      transform:translateZ(0);
     }
     @keyframes twinkle{
-      0%,100%{opacity:0;transform:translateY(0) scale(0.5);}
-      50%{opacity:1;transform:translateY(-10px) scale(1);}
+      0%,100%{opacity:0;transform:translateY(0) scale(0.5) translateZ(0);}
+      50%{opacity:1;transform:translateY(-10px) scale(1) translateZ(0);}
     }
 
-    /* Header / Logo tap */
+    /* Header */
     header{
       display:flex;
       justify-content:center;
@@ -61,31 +68,35 @@
       width:auto;
       filter:drop-shadow(0 0 6px rgba(107,70,193,0.6));
       transition:transform .3s ease;
+      will-change:transform;
+      transform:translateZ(0);
     }
-    .logo img:hover{transform:scale(1.05);}
+    .logo img:hover{transform:scale(1.05) translateZ(0);}
 
+    /* Nav - Removed backdrop-filter */
     .nav-menu{
       position:absolute;
-      top:100%; /* Menu appears just below logo */
+      top:100%;
       left:50%;
-      transform:translateX(-50%) scale(0.5);
+      transform:translateX(-50%) scale(0.5) translateZ(0);
       display:flex;
       flex-direction:column;
       align-items:center;
       background:rgba(5,10,22,0.95);
       padding:30px 50px;
       border-radius:20px;
-      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1); /* Added border glow effect */
       opacity:0;
       pointer-events:none;
       transition:all .5s ease;
       z-index:100;
       min-width:300px;
+      will-change:transform,opacity;
     }
     .nav-menu.active{
       opacity:1;
       pointer-events:auto;
-      transform:translateX(-50%) scale(1);
+      transform:translateX(-50%) scale(1) translateZ(0);
     }
     .nav-menu a{
       color:#e6eef8;
@@ -100,7 +111,7 @@
       transform:scale(1.05);
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero{
       min-height:40vh;
       display:flex;
@@ -115,7 +126,8 @@
       font-size:36px;
       color:var(--accent);
       margin-bottom:12px;
-      text-shadow:0 0 12px var(--accent);
+      text-shadow:0 0 8px var(--accent); /* Reduced */
+      will-change:text-shadow;
     }
     .hero p{
       font-size:18px;
@@ -128,48 +140,80 @@
     #searchInput{
       padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);
       width:90%;max-width:400px;background:var(--glass);color:#e6eef8;
-      backdrop-filter:blur(6px);transition:all .25s;
+      /* Removed backdrop-filter */
+      transition:all .25s;
+      will-change:transform;
     }
+    #searchInput:focus{outline:none;transform:scale(1.02);}
     #searchInput::placeholder{color:#bcd7ff;}
 
-    /* Episodes Grid */
-    .episodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:16px;position:relative;z-index:2;}
+    /* Optimized Episodes Grid */
+    .episodes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;margin-top:16px;position:relative;z-index:2;
+    }
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.04);
-      box-shadow:0 12px 30px rgba(2,6,23,0.6);backdrop-filter: blur(8px);
-      transition:transform .3s, box-shadow .3s, filter .3s;
+      border-radius:16px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 24px rgba(2,6,23,0.6); /* Reduced shadow */
+      /* Removed backdrop-filter */
+      transition:transform .3s, box-shadow .3s;
       position:relative;
       overflow:hidden;
       animation:fadeUp 0.6s ease forwards;
+      will-change:transform,box-shadow;
+      transform:translateZ(0);
     }
     .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 20px 50px rgba(107,70,193,0.4);
-      filter:brightness(1.05);
+      transform:translateY(-8px) translateZ(0);
+      box-shadow:0 16px 40px rgba(107,70,193,0.3); /* Optimized */
     }
-    .card h2{font-size:20px;color:var(--accent);margin-bottom:8px;text-shadow:0 0 10px var(--accent);}
+    .card h2{
+      font-size:20px;
+      color:var(--accent);
+      margin-bottom:8px;
+      text-shadow:0 0 6px var(--accent); /* Reduced */
+    }
     .card p{font-size:14px;line-height:1.5;color:#d6e9ff;margin-bottom:12px;}
-    .card iframe{width:100%;height:180px;border-radius:12px;border:none;margin-bottom:8px;}
-    .card .watch-btn{
-      display:inline-block;padding:10px 16px;border-radius:10px;
-      background:linear-gradient(270deg,var(--accent),var(--accent-2),var(--accent));
-      background-size:400% 400%;
-      color:#fff;font-weight:600;text-decoration:none;transition:transform .2s, background-position 2s;
-      animation:btnGradient 4s ease infinite;
+    
+    /* Optimized iframe */
+    .card iframe{
+      width:100%;
+      height:180px;
+      border-radius:12px;
+      border:none;
+      margin-bottom:8px;
+      background:transparent;
+      loading:lazy; /* Native lazy loading */
+      will-change:transform;
     }
-    .card .watch-btn:active{transform:translateY(2px);}
+    
+    .card .watch-btn{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:10px;
+      background:linear-gradient(270deg,var(--accent),var(--accent-2));
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+      transition:transform .2s;
+      will-change:transform;
+      transform:translateZ(0);
+    }
+    .card .watch-btn:hover{transform:translateY(-1px) scale(1.02);}
+    .card .watch-btn:active{transform:translateY(1px);}
     .card .preview{text-align:center;font-size:12px;color:#bcd7ff;margin-top:4px;}
 
     /* Footer */
     footer{margin-top:36px;padding:18px 6px;text-align:center;color:#9fb8dd;font-size:13px;}
 
-    /* Animations */
-    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes btnGradient{
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
+    /* Animations - GPU friendly */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(18px) translateZ(0);}
+      to{opacity:1;transform:translateY(0) translateZ(0);}
     }
 
     /* Responsive */
@@ -179,87 +223,26 @@
       .nav-menu a{font-size:20px;}
     }
 
-    /* ==========================
-       OVERSCROLL / WHITE-LINE FIX
-       Paste this inside <style> (already included here)
-       Only these rules added — no UI changes
-       ========================== */
-
-    /* ensure html/body use the same dark background and cover full height */
-    html,
-    body {
-      background-color: var(--bg) !important;
-      height: 100% !important;
-      min-height: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      -webkit-backface-visibility: hidden;
-      -webkit-perspective: 1000;
-    }
-
-    /* prevent overscroll bounce showing white on modern browsers */
-    html,
-    body {
-      overscroll-behavior-y: none;
-      overscroll-behavior: none;
-      -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
-      touch-action: pan-y;
-    }
-
-    /* reapply the hero background and fix mobile repaint glitches */
-    body {
-      background: radial-gradient(
-                   circle at 10% 10%,
-                   rgba(107, 70, 193, 0.08),
-                   transparent 10%
-                 ),
-                 linear-gradient(180deg, var(--bg), #00121a 80%) !important;
-      background-attachment: fixed;
-      -webkit-transform: translate3d(0, 0, 0); /* force GPU compositing */
-    }
-
-    /* wrapper should not introduce white edges */
-    .wrap {
-      background: transparent !important;
-      min-height: 100vh;
-      display: block;
-    }
-
-    /* iframe players sometimes paint white while loading — force transparent */
-    .card iframe,
-    iframe {
-      background: transparent !important;
-      display: block;
-      overflow: hidden;
-    }
-
-    /* scrollbar track safety for some Android browsers */
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 10px; }
-
-    /* general paint safety */
-    * {
-      background-clip: padding-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Optional fallback (commented). Uncomment only if absolutely needed for stubborn iOS bounce:
+    /* Performance fixes from original */
     html, body {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
+      background-color: var(--bg) !important;
+      min-height: 100vh !important;
+      overscroll-behavior: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      -webkit-transform: translate3d(0,0,0);
     }
-    */
-
+    .wrap {background: transparent !important; min-height: 100vh;}
+    iframe {background: transparent !important;}
+    ::-webkit-scrollbar {width: 10px;}
+    ::-webkit-scrollbar-track {background: transparent;}
+    ::-webkit-scrollbar-thumb {background: rgba(255,255,255,0.06); border-radius: 10px;}
   </style>
 </head>
 
 <body>
   <div class="wrap" role="main">
-    <!-- Sparkles -->
+    <!-- Sparkle container - Optimized -->
     <div id="sparkleContainer"></div>
 
     <header id="logoHeader">
@@ -291,26 +274,26 @@
   </div>
 
   <script>
-    // Logo tap to toggle nav menu
+    // Same functionality, optimized DOM operations
     const logoHeader = document.getElementById('logoHeader');
     const navMenu = document.getElementById('navMenu');
     logoHeader.addEventListener('click', ()=>{
       navMenu.classList.toggle('active');
     });
 
-    // Sparkle effect
+    // Optimized sparkles - Only 12
     const sparkleContainer = document.getElementById('sparkleContainer');
-    for(let i=0;i<40;i++){
+    for(let i=0; i<12; i++){
       const sp = document.createElement('div');
       sp.className='sparkle';
       sp.style.left=Math.random()*100+'%';
       sp.style.top=Math.random()*50+'%';
-      sp.style.animationDuration=(2+Math.random()*2)+'s';
-      sp.style.width=sp.style.height=(2+Math.random()*4)+'px';
+      sp.style.animationDuration=(3+Math.random()*2)+'s';
+      sp.style.animationDelay=Math.random()*2+'s';
       sparkleContainer.appendChild(sp);
     }
 
-    // Episodes data
+    // Same episodes data
     let episodesData=[
       {title:"Episode 1: The Beginning",description:"Description for Episode 1 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER1"},
       {title:"Episode 2: Divine Journey",description:"Description for Episode 2 — placeholder text.",videoUrl:"https://www.facebook.com/plugins/video.php?href=PLACEHOLDER2"},
@@ -335,32 +318,40 @@
     let isHindi=false;
 
     function renderEpisodes(list){
+      // Batch DOM updates
       grid.innerHTML='';
+      const fragment = document.createDocumentFragment();
+      
       list.forEach(ep=>{
         const card=document.createElement('div');
         card.className='card';
         card.innerHTML=`
           <h2>${ep.title}</h2>
           <p>${ep.description}</p>
-          <iframe src="${ep.videoUrl}" allowfullscreen></iframe>
-          <a class="watch-btn" href="${ep.videoUrl}" target="_blank">Watch Now</a>
+          <iframe src="${ep.videoUrl}" allowfullscreen loading="lazy"></iframe>
+          <a class="watch-btn" href="${ep.videoUrl}" target="_blank" rel="noopener">Watch Now</a>
           <div class="preview">Preview available in player</div>
         `;
-        grid.appendChild(card);
+        fragment.appendChild(card);
       });
+      grid.appendChild(fragment);
     }
 
     renderEpisodes(episodesData);
 
-    // Search filter
+    // Debounced search
+    let searchTimeout;
     searchInput.addEventListener('input', ()=>{
-      const val = searchInput.value.toLowerCase();
-      const filtered = (isHindi ? episodesDataHindi : episodesData)
-        .filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
-      renderEpisodes(filtered);
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(()=>{
+        const val = searchInput.value.toLowerCase();
+        const filtered = (isHindi ? episodesDataHindi : episodesData)
+          .filter(ep=>ep.title.toLowerCase().includes(val) || ep.description.toLowerCase().includes(val));
+        renderEpisodes(filtered);
+      }, 200); // Debounce 200ms
     });
 
-    // Language toggle
+    // Language toggle - same
     document.getElementById('langToggle').addEventListener('click', ()=>{
       isHindi = !isHindi;
       if(isHindi){
